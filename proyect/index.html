@@ -14,6 +14,8 @@
   </head>
   <body onload="setInterval(movimiento, 1000)">
     <a-scene id="escena">
+      <a-entity id="leftHand" hand-tracking-controls="hand: left;"></a-entity>
+      <a-entity id="rightHand" hand-tracking-controls="hand: right;"></a-entity>
       <a-box log="Hola Mundo" id="caja" position="-1 0.5 -3" rotation="0 45 0"></a-box>
       <a-sphere id="esfera" position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
       <a-cylinder id="cilindro" position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
