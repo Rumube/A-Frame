@@ -1,14 +1,50 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script>
+        AFRAME.registerComponent('log', {
+            schema:{type: 'string'},
+
+            init: function(){
+                let stringToLog = this.data;
+                console.log(stringToLog);
+            }
+        });
+    </script>
   </head>
-  <body>
-    <a-scene>
-      <a-box id="caja" src="/img/textura.png" position="-1 0.5 -3" rotation="0 45 0"></a-box>
+  <body onload="setInterval(movimiento, 1000)">
+    <a-scene id="escena">
+      <a-box log="Hola Mundo" id="caja" position="-1 0.5 -3" rotation="0 45 0"></a-box>
       <a-sphere id="esfera" position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
       <a-cylinder id="cilindro" position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
       <a-plane id="plano" position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
       <a-sky id="cielo" color="#ECECEC"></a-sky>
     </a-scene>
+
+    <script> 
+        let posY = 0
+        function movimiento(){
+            let esfera = document.getElementById("esfera");
+            esfera.setAttribute("position", `0 ${posY} -5`);
+            posY++;
+        }
+
+        createElement();
+
+        function createElement(){
+            console.log("Create element")
+            let newEntity = document.createElement('a-entity');
+            newEntity.setAttribute('geometry', {
+                primitive: 'box',
+                height: 3,
+                width: 1
+            });
+            newEntity.setAttribute('position', '0 0 -5');
+            newEntity.setAttribute('id', 'nuevaCaja');
+            let escena = document.getElementById('escena');
+            escena.appendChild(newEntity);
+        }
+
+    </script>
   </body>
 </html>
